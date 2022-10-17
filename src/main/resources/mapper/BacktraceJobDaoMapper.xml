@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhihu.ares.infra.persistence.sql.mapper.BacktraceJobDaoMapper" >
+  <resultMap id="BaseResultMap" type="com.zhihu.ares.domain.dao.BacktraceJobDao" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="pause_start_time" property="pauseStartTime" jdbcType="VARCHAR" />
+    <result column="pause_end_time" property="pauseEndTime" jdbcType="VARCHAR" />
+    <result column="backtrace_start_time" property="backtraceStartTime" jdbcType="VARCHAR" />
+    <result column="backtrace_end_time	" property="backtraceEndTime	" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, reason, pause_start_time, pause_end_time, backtrace_start_time, backtrace_end_time	, 
+    creator, status, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from backtrace_job
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from backtrace_job
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zhihu.ares.domain.dao.BacktraceJobDao" >
+    insert into backtrace_job (id, reason, pause_start_time, 
+      pause_end_time, backtrace_start_time, backtrace_end_time	, 
+      creator, status, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{reason,jdbcType=VARCHAR}, #{pauseStartTime,jdbcType=VARCHAR}, 
+      #{pauseEndTime,jdbcType=VARCHAR}, #{backtraceStartTime,jdbcType=VARCHAR}, #{backtraceEndTime	,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhihu.ares.domain.dao.BacktraceJobDao" >
+    insert into backtrace_job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="pauseStartTime != null" >
+        pause_start_time,
+      </if>
+      <if test="pauseEndTime != null" >
+        pause_end_time,
+      </if>
+      <if test="backtraceStartTime != null" >
+        backtrace_start_time,
+      </if>
+      <if test="backtraceEndTime	 != null" >
+        backtrace_end_time	,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseStartTime != null" >
+        #{pauseStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseEndTime != null" >
+        #{pauseEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="backtraceStartTime != null" >
+        #{backtraceStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="backtraceEndTime	 != null" >
+        #{backtraceEndTime	,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhihu.ares.domain.dao.BacktraceJobDao" >
+    update backtrace_job
+    <set >
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseStartTime != null" >
+        pause_start_time = #{pauseStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseEndTime != null" >
+        pause_end_time = #{pauseEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="backtraceStartTime != null" >
+        backtrace_start_time = #{backtraceStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="backtraceEndTime	 != null" >
+        backtrace_end_time	 = #{backtraceEndTime	,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhihu.ares.domain.dao.BacktraceJobDao" >
+    update backtrace_job
+    set reason = #{reason,jdbcType=VARCHAR},
+      pause_start_time = #{pauseStartTime,jdbcType=VARCHAR},
+      pause_end_time = #{pauseEndTime,jdbcType=VARCHAR},
+      backtrace_start_time = #{backtraceStartTime,jdbcType=VARCHAR},
+      backtrace_end_time	 = #{backtraceEndTime	,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
